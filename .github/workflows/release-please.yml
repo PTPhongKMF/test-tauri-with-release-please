@@ -1,8 +1,8 @@
 # Workflow for generating CHANGELOG.md, creating a GitHub release tag, and bumping the project version.
 # Powered by https://github.com/googleapis/release-please / https://github.com/googleapis/release-please-action
-
-# It also uses a small Deno script to randomize a header string and apply it to the release-please PR, with 
-# a safeguard to prevent reassigning a header that is already assigned to a PR.
+# 
+# This workflow also runs a small Deno script that selects a random header and applies it to the release-please 
+# pull request, with a safeguard to prevent changing the header if one has already been assigned.
 
 name: Release Please
 
@@ -33,8 +33,8 @@ jobs:
           config-file: .github/release-please-config.json
           manifest-file: .github/.release-please-manifest.json
 
-  set-randomize-pr-header:
-    name: PR Header Randomization
+  pr-random-header:
+    name: PR Random Header Assignment
     needs: release-please
     if: needs.release-please.outputs.prs_created == 'true'
     runs-on: ubuntu-latest
