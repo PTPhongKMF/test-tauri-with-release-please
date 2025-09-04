@@ -48,6 +48,6 @@ jobs:
           deno-version: v2.x # latest stable for v2.x major
 
       - name: Run script
-        run: Deno run .github/scripts/set-random-header-to-release-please-pr.ts
+        run: deno run .github/scripts/set-random-header-to-release-please-pr.ts
         # env:
           # PR_JSON_STR: ${{ needs.release-please.outputs.pr_json_str }}
