@@ -31,18 +31,18 @@ const HEADER_LIST = [
   "Header 5",
 ];
 
+console.info("::notice::Getting pull request JSON string from env...");
 const PR_JSON_STR = Deno.env.get("PR_JSON_STR");
 if (!PR_JSON_STR) {
-  console.error("PR_JSON_STR environment variable is not set");
+  console.error("::error::PR_JSON_STR environment variable is not set");
   Deno.exit(1);
 }
 
+console.info("Parsing pull request JSON string...");
 let pullRequestData: PullRequest;
 try {
   pullRequestData = JSON.parse(PR_JSON_STR) as PullRequest;
 } catch (error) {
-  console.error(
-    "Failed to parse PR_JSON_STR environment variable as JSON \n" + error,
-  );
+  console.error("::error::Failed to parse PR_JSON_STR environment variable as JSON \n" + error);
   Deno.exit(1);
 }

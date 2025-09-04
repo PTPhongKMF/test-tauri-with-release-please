@@ -49,5 +49,5 @@ jobs:
 
       - name: Run script
         run: deno run --allow-env .github/scripts/set-random-header-to-release-please-pr.ts
-        # env:
-          # PR_JSON_STR: ${{ needs.release-please.outputs.pr_json_str }}
+        env:
+          PR_JSON_STR: ${{ needs.release-please.outputs.pr_json_str }}
