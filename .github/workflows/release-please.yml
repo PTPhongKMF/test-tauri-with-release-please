@@ -1,0 +1,53 @@
+# Workflow for generating CHANGELOG.md, creating a GitHub release tag, and bumping the project version.
+# Powered by https://github.com/googleapis/release-please / https://github.com/googleapis/release-please-action
+
+# It also uses a small Deno script to randomize a header string and apply it to the release-please PR, with 
+# a safeguard to prevent reassigning a header that is already assigned to a PR.
+
+name: Release Please
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    name: Versioning & Release
+    runs-on: ubuntu-latest
+    outputs:
+      prs_created: ${{ steps.release-please-action.outputs.prs_created }}
+      pr_json_str: ${{ steps.release-please-action.outputs.pr }}
+    steps:
+      - name: Run release-please-action
+        id: release-please-action
+        uses: googleapis/release-please-action@v4
+        with:
+          # use a PAT (personal access token) so it can trigger other workflows
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+          config-file: .github/release-please-config.json
+          manifest-file: .github/.release-please-manifest.json
+
+  set-randomize-pr-header:
+    name: PR Header Randomization
+    needs: release-please
+    if: needs.release-please.outputs.prs_created == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Deno runtime
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x # latest stable for v2.x major
+
+      - name: Run script
+        run: Deno run .github/scripts/set-random-header-to-release-please-pr.ts
+        # env:
+          # PR_JSON_STR: ${{ needs.release-please.outputs.pr_json_str }}

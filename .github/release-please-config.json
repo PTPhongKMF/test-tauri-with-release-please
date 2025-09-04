@@ -1,0 +1,38 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/refs/heads/main/schemas/config.json",
+
+  "initial-version": "0.1.0",
+
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": false,
+
+  "include-component-in-tag": false,
+  "include-v-in-tag": true,
+
+  "packages": {
+    ".": {
+      "component": "aethereye",
+
+      "release-type": "simple",
+
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "src-tauri/tauri.conf.json",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "toml",
+          "path": "src-tauri/Cargo.toml",
+          "jsonpath": "$.package.version"
+        }
+      ],
+
+      "component-no-space": true,
+
+      "pull-request-title-pattern": "chore(project): 🤖 release v${version}",
+
+      "changelog-path": "CHANGELOG.md"
+    }
+  }
+}
