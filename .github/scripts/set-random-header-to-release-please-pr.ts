@@ -8,7 +8,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-import { sample } from "jsr:@std/collections";
+import { sample } from "jsr:@std/collections/sample";
 
 /**
  * PullRequest type from the official googleapis/release-please repository.
@@ -35,24 +35,7 @@ const HEADER_LIST = [
   "Header 5",
 ];
 
-// testing core
-
-// core.warning("warning test");
-// core.info("info test")
-// core.notice("notice test");
-// core.error("error test")
-
-// core.startGroup("group test")
-// core.warning("warning test");
-// core.info("info test")
-// core.notice("notice test");
-// core.error("error test")
-// core.endGroup()
-
-// testing core
-
-console.info("🔷 Start set-random-header-to-release-please-pr.ts");
-// console.info("🔹 Start set-random-header-to-release-please-pr.ts");
+console.info("🔹 Start set-random-header-to-release-please-pr.ts");
 
 console.info("Reading pull request JSON string from env...");
 const PR_JSON_STR = Deno.env.get("PR_JSON_STR");
