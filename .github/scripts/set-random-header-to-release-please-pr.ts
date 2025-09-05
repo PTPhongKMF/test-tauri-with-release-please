@@ -8,7 +8,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-import { sample } from "jsr:@std/collections/sample";
+import { sample } from "jsr:@std/collections";
+import core from "npm:@actions/core";
 
 /**
  * PullRequest type from the official googleapis/release-please repository.
@@ -35,12 +36,29 @@ const HEADER_LIST = [
   "Header 5",
 ];
 
-console.info("::notice::Starting `set-random-header-to-release-please-pr.ts`...");
+// testing core
+
+core.warning("warning test");
+core.info("info test")
+core.notice("notice test");
+core.error("error test")
+
+core.startGroup("group test")
+core.warning("warning test");
+core.info("info test")
+core.notice("notice test");
+core.error("error test")
+core.endGroup()
+
+
+// testing core
+
+console.info('::notice::ℹ Starting "set-random-header-to-release-please-pr.ts". ℹ️');
 
 console.info("Reading pull request JSON string from env...");
 const PR_JSON_STR = Deno.env.get("PR_JSON_STR");
 if (!PR_JSON_STR) {
-  console.error("❌ ::error::PR_JSON_STR environment variable is not defined.");
+  console.error("::error::❌ PR_JSON_STR environment variable is not defined.");
   Deno.exit(1);
 }
 
@@ -49,18 +67,18 @@ let pullRequest: PullRequest;
 try {
   pullRequest = JSON.parse(PR_JSON_STR) as PullRequest;
 } catch (error) {
-  console.error("❌ ::error::Failed to parse PR_JSON_STR environment variable as JSON.\n" + error);
+  console.error("::error::❌ Failed to parse PR_JSON_STR environment variable as JSON.\n" + error);
   Deno.exit(1);
 }
 
 console.info("Extracting pull request header...");
 const firstNewlineIndex = pullRequest.body.indexOf("\n");
 if (firstNewlineIndex === -1) {
-  console.error("❌ ::error::Unexpected pull request body format. No newline (`\\n`) found.");
+  console.error("::error::❌ Unexpected pull request body format. No newline (`\\n`) found.");
   Deno.exit(1);
 }
 const oldPrHeader = pullRequest.body.slice(0, firstNewlineIndex);
-console.info("✅ Original pull request header: " + oldPrHeader);
+console.info("✔ Original pull request header: " + oldPrHeader);
 
 // safeguard against reassigning another header to the already assigned PR
 if (HEADER_LIST.includes(oldPrHeader)) {
@@ -70,7 +88,7 @@ if (HEADER_LIST.includes(oldPrHeader)) {
 
 console.info("Selecting a random header...");
 const newPrHeader = sample(HEADER_LIST);
-console.info("✅ New pull request header: " + newPrHeader);
+console.info("✔ New pull request header: " + newPrHeader);
 
 const newPrBody = newPrHeader + pullRequest.body.slice(firstNewlineIndex);
 
@@ -78,12 +96,12 @@ console.info("Preparing to update PR body via GitHub REST API...");
 
 const GITHUB_TOKEN = Deno.env.get("GITHUB_TOKEN");
 if (!GITHUB_TOKEN) {
-  console.error("❌ ::error::GITHUB_TOKEN is not available. This script must be run in a GitHub Actions environment with appropriate permissions.");
+  console.error("::error::❌ GITHUB_TOKEN is not available. This script must be run in a GitHub Actions environment with appropriate permissions.");
   Deno.exit(1);
 }
 const GITHUB_REPOSITORY = Deno.env.get("GITHUB_REPOSITORY");
 if (!GITHUB_REPOSITORY) {
-  console.error("❌ ::error::GITHUB_REPOSITORY is not available. Cannot determine repository owner and name.");
+  console.error("::error::❌ GITHUB_REPOSITORY is not available. Cannot determine repository owner and name.");
   Deno.exit(1);
 }
 
@@ -106,18 +124,18 @@ try {
 
   if (!response.ok) {
     const errorBody = await response.json();
-    console.error(`❌ ::error::Failed to update PR body. Status: ${response.status}`);
+    console.error(`::error::❌ Failed to update PR body. Status: ${response.status}`);
     console.log("::group::Error response:");
     console.error(JSON.stringify(errorBody, null, 2));
     console.log("::endgroup::");
     Deno.exit(1);
   }
 } catch (error) {
-  console.error("❌ ::error::An unexpected error occurred during the fetch call.");
+  console.error("::error::❌ An unexpected error occurred during the fetch call.");
   console.error(error);
   Deno.exit(1);
 }
 
-console.info(`✅ Successfully updated pull request: #${prUrl}`);
-console.info("✅ Script `set-random-header-to-release-please-pr.ts` finished successfully.");
+console.info(`✔ Successfully updated pull request: #${prUrl}`);
+console.info("✔ Script `set-random-header-to-release-please-pr.ts` finished successfully.");
 Deno.exit(0);
