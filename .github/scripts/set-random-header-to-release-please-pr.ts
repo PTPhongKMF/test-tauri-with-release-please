@@ -9,7 +9,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 
 import { sample } from "jsr:@std/collections";
-import core from "npm:@actions/core";
 
 /**
  * PullRequest type from the official googleapis/release-please repository.
@@ -38,17 +37,17 @@ const HEADER_LIST = [
 
 // testing core
 
-core.warning("warning test");
-core.info("info test")
-core.notice("notice test");
-core.error("error test")
+// core.warning("warning test");
+// core.info("info test")
+// core.notice("notice test");
+// core.error("error test")
 
-core.startGroup("group test")
-core.warning("warning test");
-core.info("info test")
-core.notice("notice test");
-core.error("error test")
-core.endGroup()
+// core.startGroup("group test")
+// core.warning("warning test");
+// core.info("info test")
+// core.notice("notice test");
+// core.error("error test")
+// core.endGroup()
 
 
 // testing core
@@ -131,6 +130,7 @@ try {
     Deno.exit(1);
   }
 } catch (error) {
+  console.error("::error file=app.js,line=133,col=15::❌ An unexpected error occurred during the fetch call.");
   console.error("::error::❌ An unexpected error occurred during the fetch call.");
   console.error(error);
   Deno.exit(1);
