@@ -30,8 +30,6 @@ const HEADER_LIST = [
   "Header 5",
 ];
 
-console.error("::error::❌ test.");
-Deno.exit(0);
 console.info("🔹 Start set-random-header-to-release-please-pr.ts");
 
 console.info("Reading pull request JSON string from env...");
