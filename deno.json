@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "",
   "license": "MIT",
-  "nodeModulesDir": "auto",
   "tasks": {
     "start": "deno run -A npm:vite",
     "dev": "vite",

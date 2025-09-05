@@ -49,10 +49,10 @@ const HEADER_LIST = [
 // core.error("error test")
 // core.endGroup()
 
-
 // testing core
 
-console.info('::notice::ℹ Starting "set-random-header-to-release-please-pr.ts". ℹ️');
+console.info("🔷 Start set-random-header-to-release-please-pr.ts");
+console.info("🔹 Start set-random-header-to-release-please-pr.ts");
 
 console.info("Reading pull request JSON string from env...");
 const PR_JSON_STR = Deno.env.get("PR_JSON_STR");
@@ -73,21 +73,21 @@ try {
 console.info("Extracting pull request header...");
 const firstNewlineIndex = pullRequest.body.indexOf("\n");
 if (firstNewlineIndex === -1) {
-  console.error("::error::❌ Unexpected pull request body format. No newline (`\\n`) found.");
+  console.error("::error::❌ Unexpected pull request body format. No newline (\\n) found.");
   Deno.exit(1);
 }
 const oldPrHeader = pullRequest.body.slice(0, firstNewlineIndex);
-console.info("✔ Original pull request header: " + oldPrHeader);
+console.info(`✔ Original pull request header: ${oldPrHeader}`);
 
 // safeguard against reassigning another header to the already assigned PR
 if (HEADER_LIST.includes(oldPrHeader)) {
-  console.info("::notice::This pull request header has already been assigned. Skipping...");
+  console.info("::notice::🏃‍♂️ This pull request header has already been assigned. Skipped.");
   Deno.exit(0);
 }
 
 console.info("Selecting a random header...");
 const newPrHeader = sample(HEADER_LIST);
-console.info("✔ New pull request header: " + newPrHeader);
+console.info(`✔ New pull request header: ${newPrHeader}`);
 
 const newPrBody = newPrHeader + pullRequest.body.slice(firstNewlineIndex);
 
@@ -130,12 +130,11 @@ try {
     Deno.exit(1);
   }
 } catch (error) {
-  console.error("::error file=app.js,line=133,col=15::❌ An unexpected error occurred during the fetch call.");
   console.error("::error::❌ An unexpected error occurred during the fetch call.");
   console.error(error);
   Deno.exit(1);
 }
 
-console.info(`✔ Successfully updated pull request: #${prUrl}`);
+console.info(`✔ Successfully updated pull request: ${prUrl}`);
 console.info("✔ Script `set-random-header-to-release-please-pr.ts` finished successfully.");
 Deno.exit(0);
