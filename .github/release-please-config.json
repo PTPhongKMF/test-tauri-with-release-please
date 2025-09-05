@@ -31,7 +31,6 @@
       "component-no-space": true,
 
       "pull-request-title-pattern": "chore(project): 🤖 release v${version}",
-      "pull-request-header": ":robot: I have created a release *beep* *boop*. Also, this was changed in config!",
 
       "changelog-path": "CHANGELOG.md"
     }

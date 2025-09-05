@@ -2,7 +2,7 @@
 # Powered by https://github.com/googleapis/release-please / https://github.com/googleapis/release-please-action
 #
 # This workflow also runs a small Deno script that selects a random header and applies it to the release-please
-# pull request, with a safeguard to prevent changing the header if one has already been assigned.
+# pull request whenever it is created or updated.
 
 name: Release Please
 
