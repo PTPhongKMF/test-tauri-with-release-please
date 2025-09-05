@@ -52,7 +52,7 @@ const HEADER_LIST = [
 // testing core
 
 console.info("🔷 Start set-random-header-to-release-please-pr.ts");
-console.info("🔹 Start set-random-header-to-release-please-pr.ts");
+// console.info("🔹 Start set-random-header-to-release-please-pr.ts");
 
 console.info("Reading pull request JSON string from env...");
 const PR_JSON_STR = Deno.env.get("PR_JSON_STR");
