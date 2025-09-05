@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.2.0...v0.2.1) (2025-09-05)
+
+
+### Bug Fixes
+
+* test ([5c9ff08](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/5c9ff08d7d5cbf3353796113b745e292d3c400ac))
+* yeah must exit code &gt; 0 ([f4915d2](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/f4915d21d2a3060d85f4c6c2e34d714ee2a93a20))
+
 ## [0.2.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.1.0...v0.2.0) (2025-09-05)
 
 
