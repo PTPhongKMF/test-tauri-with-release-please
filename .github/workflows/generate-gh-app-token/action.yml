@@ -19,7 +19,7 @@ inputs:
 outputs:
   token:
     description: "GitHub App installation token"
-    # value: ${{ steps.generate-token.outputs.token }}
+    value: ${{ steps.generate-token.outputs.token }}
 
 runs:
   using: "composite"
