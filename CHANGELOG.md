@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.3.0...v0.4.0) (2025-09-06)
+
+
+### Features
+
+* why not random ([a0d27b4](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/a0d27b48b3e9e6b53c746f170b97f1bd3da27c09))
+
+
+### Bug Fixes
+
+* ok true now, happy? ([65e33e2](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/65e33e217da670434aa707966ef7bf8fe3e571e9))
+
 ## [0.3.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.2.1...v0.3.0) (2025-09-06)
 
 
