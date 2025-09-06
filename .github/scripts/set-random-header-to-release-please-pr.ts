@@ -71,9 +71,9 @@ const newPrBody = newPrHeader + pullRequest.body.slice(firstNewlineIndex);
 
 console.info("Preparing to update PR body via GitHub REST API...");
 
-const GITHUB_TOKEN = Deno.env.get("GITHUB_TOKEN");
-if (!GITHUB_TOKEN) {
-  console.error("::error::❌ GITHUB_TOKEN is not available. This script must be run in a GitHub Actions environment with appropriate permissions.");
+const TOKEN = Deno.env.get("TOKEN");
+if (!TOKEN) {
+  console.error("::error::❌ TOKEN environment variable is not defined.");
   Deno.exit(1);
 }
 const GITHUB_REPOSITORY = Deno.env.get("GITHUB_REPOSITORY");
@@ -92,7 +92,7 @@ try {
   const response = await fetch(apiUrl, {
     method: "PATCH",
     headers: {
-      "Authorization": `Bearer ${GITHUB_TOKEN}`,
+      "Authorization": `Bearer ${TOKEN}`,
       "Accept": "application/vnd.github+json",
       "Content-Type": "application/json",
     },
