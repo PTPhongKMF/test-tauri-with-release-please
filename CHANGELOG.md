@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.3.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.2.1...v0.3.0) (2025-09-06)
+
+
+### Features
+
+* good now? ([a41c44b](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/a41c44b7cd91c886e5df71fcc24c20f6366ebdec))
+* last one ([df6e51f](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/df6e51ff1f165fdc9c579869eae2a3988f2e1852))
+* test new bot ([dd7f0b7](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/dd7f0b75cb9c1c1b6690a97c7e42c41a78e816b8))
+
+
+### Bug Fixes
+
+* again babe ([3c50afb](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/3c50afb55a7108962e9550d50af2f80e4cc3fa0f))
+* good now? ([0cc5488](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/0cc5488acba7588bf1097a14edb63eedb9c56c6c))
+* hm ([5359b58](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/5359b58134419e3524609b41be8ae9ae4c5d5ca4))
+* ok? ([d12ec52](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/d12ec5238769fd8217eaf0b93aac8701a905cb42))
+* sure ([4ab2695](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/4ab2695a947d14256205b36ec15aa1611659030d))
+
 ## [0.2.1](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.2.0...v0.2.1) (2025-09-05)
 
 
