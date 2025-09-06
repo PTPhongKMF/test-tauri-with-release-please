@@ -31,7 +31,7 @@ jobs:
 
       - name: Generate GH App Token
         id: generate-token
-        uses: .github/workflows/generate-gh-app-token.yml
+        uses: ./.github/workflows/generate-gh-app-token.yml
         with:
           app-id: ${{ secrets.WAYFEA_APP_ID }}
           private-key: ${{ secrets.WAYFEA_PRIVATE_KEY }}
