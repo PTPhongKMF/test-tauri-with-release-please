@@ -46,7 +46,7 @@ jobs:
   pr-header-assignment:
     name: Assign a Random Header to PR
     needs: release-please
-    if: needs.release-please.outputs.prs_created == true
+    if: needs.release-please.outputs.prs_created == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
