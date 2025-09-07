@@ -90,7 +90,10 @@ try {
         console.log(`✔ Successfully updated pull request: ${prUrl}`);
     }
 } catch (error) {
-    console.log("::error::❌ An unexpected error occurred.\n\n" + error);
+    console.log(
+        "::error::❌ An unexpected error occurred.\n" +
+            error,
+    );
     Deno.exit(1);
 }
 
