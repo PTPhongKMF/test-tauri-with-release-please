@@ -70,7 +70,7 @@ jobs:
         run: deno run --allow-env --allow-net .github/scripts/set-random-header-to-release-please-pr.ts
         env:
           TOKEN: ${{ steps.generate-token.outputs.token }}
-          PR_JSON_STR: ${{ needs.release-please.outputs.pr_json_str }}
+          PR_JSON_STR: ${{ needs.release-please-core.outputs.pr_json_str }}
 
   release-please-tag-release-tasks:
     name: (Post RP) Manage Custom Tag & Release Tasks
