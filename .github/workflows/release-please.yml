@@ -24,6 +24,7 @@ jobs:
       prs_created: ${{ steps.run-rp-action.outputs.prs_created }}
       pr_json_str: ${{ steps.run-rp-action.outputs.pr }}
       releases_created: ${{ steps.run-rp-action.outputs.releases_created }}
+      tag_name: ${{ steps.run-rp-action.outputs.tag_name }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -39,7 +40,7 @@ jobs:
         id: run-rp-action
         uses: googleapis/release-please-action@v4
         with:
-          # use a GitHub App Token so it can trigger other workflows
+          # use a GitHub App Token so it can trigger other workflows (e.g., a build workflow triggered on tag release creation)
           token: ${{ steps.generate-token.outputs.token }} 
 
           config-file: .github/release-please-config.json
@@ -94,6 +95,7 @@ jobs:
           deno-version: v2.x # latest stable for v2.x major
 
       - name: Run 
-        run: deno run --allow-env --allow-net .github/scripts/ wutt?
+        run: deno run --allow-env --allow-net .github/scripts/prepend-markdown-to-release-please-release-note.ts
         env:
           TOKEN: ${{ steps.generate-token.outputs.token }}
+          TAG_NAME: ${{ needs.release-please-core.outputs.tag_name }}
