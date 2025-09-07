@@ -83,7 +83,9 @@ try {
         if (true) {
             throw new Error(
                 `Failed to update PR body. Status: ${response.status}\n` +
-                    JSON.stringify(await response.json(), null, 2),
+                    "::group::Error response:" +
+                    JSON.stringify(await response.json(), null, 2) +
+                    "::endgroup::",
             );
         }
 
