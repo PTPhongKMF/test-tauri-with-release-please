@@ -83,6 +83,11 @@ const newPrBody = newPrHeader + pullRequest.body.slice(firstNewlineIndex);
 console.info("Preparing to update PR body via GitHub REST API...");
 
 console.log("after Preparing to... BUT before test abrupt...")
+console.log("log 1");
+console.log("log 2");
+console.log("log 3");
+console.log("log 4");
+console.log("log 5");
 console.error("::error::❌ test abrupt exit");
 Deno.exit(1);
 
