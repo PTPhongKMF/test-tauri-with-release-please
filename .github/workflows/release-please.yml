@@ -45,7 +45,7 @@ jobs:
           config-file: .github/release-please-config.json
           manifest-file: .github/.release-please-manifest.json
 
-  release-please-pull-request-tasks:
+  release-please-custom-pull-request-tasks:
     name: (Post RP) Manage Custom Pull Request Tasks
     needs: release-please-core
     if: needs.release-please-core.outputs.prs_created == 'true'
@@ -72,7 +72,7 @@ jobs:
           TOKEN: ${{ steps.generate-token.outputs.token }}
           PR_JSON_STR: ${{ needs.release-please-core.outputs.pr_json_str }}
 
-  release-please-tag-release-tasks:
+  release-please-custom-tag-release-tasks:
     name: (Post RP) Manage Custom Tag & Release Tasks
     needs: release-please-core
     if: needs.release-please-core.outputs.releases_created == 'true'
