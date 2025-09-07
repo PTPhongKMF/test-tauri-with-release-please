@@ -116,6 +116,13 @@ try {
     const releaseId = release.id;
     const releaseBody = release.body ?? "";
 
+    console.log("::notice::releaseBody:" + release.body);
+    console.log("::notice::releaseBody_html:" + release.body_html);
+    console.log("::notice::releaseBody_text" + release.body_text);
+    console.log("::notice::assets_url" + release.assets_url);
+    console.log("::notice::upload_url" + release.upload_url);
+    console.log("::notice::discuss" + release.discussion_url);
+
     const patchApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/${releaseId}`;
     const newReleaseBody = `${prependMarkdownStr.trim()}\n\n${releaseBody.trim()}`;
 

@@ -94,8 +94,8 @@ jobs:
         with:
           deno-version: v2.x # latest stable for v2.x major
 
-      - name: Run 
-        run: deno run --allow-env --allow-net .github/scripts/prepend-markdown-to-release-please-release-note.ts
+      - name: Run prepend markdown to release note script
+        run: deno run --allow-read --allow-env --allow-net .github/scripts/prepend-markdown-to-release-please-release-note.ts
         env:
           TOKEN: ${{ steps.generate-token.outputs.token }}
           TAG_NAME: ${{ needs.release-please-core.outputs.tag_name }}
