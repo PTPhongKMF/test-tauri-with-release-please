@@ -17,6 +17,23 @@ try {
     const TAG_NAME = Deno.env.get("TAG_NAME");
     if (!TAG_NAME) throw new Error("TAG_NAME environment variable is not defined.");
 
+    const [owner, repo] = GITHUB_REPOSITORY.split("/");
+
+    const getApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/tags/${TAG_NAME}`;
+    const getReleaseResponse = await fetch(getApiUrl, {
+        headers: {
+            "Authorization": `Bearer ${TOKEN}`,
+            "Accept": "application/vnd.github+json",
+        },
+    });
+
+    if (!getReleaseResponse.ok) {
+        throw new Error("");
+        
+        console.error("Failed to fetch release:", releaseRes.status, await releaseRes.text());
+        Deno.exit(1);
+    }
+
     const prependMarkdownStr = await Deno.readTextFile(".github/scripts/assets/prepend-release-note.md");
 } catch (error) {
     console.log(
