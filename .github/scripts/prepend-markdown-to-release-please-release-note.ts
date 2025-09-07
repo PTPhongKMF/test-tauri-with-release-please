@@ -19,6 +19,12 @@ if (!GITHUB_REPOSITORY) {
   Deno.exit(1);
 }
 
+const TAG_NAME = Deno.env.get("TAG_NAME");
+if (!TAG_NAME) {
+  console.log("::error::❌ TAG_NAME environment variable is not defined.");
+  Deno.exit(1);
+}
+
 // console.log(`✔ Successfully updated pull request: ${prUrl}`);
 console.log("✔ Script 'prepend-markdown-to-release-please-release-note.ts' finished successfully.");
 Deno.exit(0);

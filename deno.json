@@ -26,6 +26,7 @@
   },
 
   "fmt": {
-    "lineWidth": 150
+    "lineWidth": 150,
+    "indentWidth": 4
   }
 }

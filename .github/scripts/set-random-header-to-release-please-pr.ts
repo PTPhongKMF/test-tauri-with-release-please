@@ -12,59 +12,59 @@
  * See: https://github.com/googleapis/release-please/blob/main/src/pull-request.ts#L15
  */
 interface PullRequest {
-  readonly headBranchName: string;
-  readonly baseBranchName: string;
-  readonly number: number;
-  readonly mergeCommitOid?: string;
-  readonly title: string;
-  readonly body: string;
-  readonly labels: string[];
-  readonly files: string[];
-  readonly sha?: string;
+    readonly headBranchName: string;
+    readonly baseBranchName: string;
+    readonly number: number;
+    readonly mergeCommitOid?: string;
+    readonly title: string;
+    readonly body: string;
+    readonly labels: string[];
+    readonly files: string[];
+    readonly sha?: string;
 }
 
 const HEADER_LIST = [
-  "", // empty string: preserves the default header set by release-please
-  "Header 2",
-  "Header 3",
-  "Header 4",
-  "Header 5",
+    "", // empty string: preserves the default header set by release-please
+    "Header 2",
+    "Header 3",
+    "Header 4",
+    "Header 5",
 ];
 
 console.log("🔹 Start set-random-header-to-release-please-pr.ts");
 
 const TOKEN = Deno.env.get("TOKEN");
 if (!TOKEN) {
-  console.log("::error::❌ TOKEN environment variable is not defined.");
-  Deno.exit(1);
+    console.log("::error::❌ TOKEN environment variable is not defined.");
+    Deno.exit(1);
 }
 
 const GITHUB_REPOSITORY = Deno.env.get("GITHUB_REPOSITORY");
 if (!GITHUB_REPOSITORY) {
-  console.log("::error::❌ GITHUB_REPOSITORY is not available. Cannot determine repository owner and name.");
-  Deno.exit(1);
+    console.log("::error::❌ GITHUB_REPOSITORY is not available. Cannot determine repository owner and name.");
+    Deno.exit(1);
 }
 
 const PR_JSON_STR = Deno.env.get("PR_JSON_STR");
 if (!PR_JSON_STR) {
-  console.log("::error::❌ PR_JSON_STR environment variable is not defined.");
-  Deno.exit(1);
+    console.log("::error::❌ PR_JSON_STR environment variable is not defined.");
+    Deno.exit(1);
 }
 
 console.log("Parsing pull request JSON string...");
 let pullRequest: PullRequest;
 try {
-  pullRequest = JSON.parse(PR_JSON_STR) as PullRequest;
+    pullRequest = JSON.parse(PR_JSON_STR) as PullRequest;
 } catch (error) {
-  console.log("::error::❌ Failed to parse PR_JSON_STR environment variable as JSON.\n" + error);
-  Deno.exit(1);
+    console.log("::error::❌ Failed to parse PR_JSON_STR environment variable as JSON.\n" + error);
+    Deno.exit(1);
 }
 
 console.log("Extracting pull request header...");
 const firstNewlineIndex = pullRequest.body.indexOf("\n");
 if (firstNewlineIndex === -1) {
-  console.log("::error::❌ Unexpected pull request body format. No newline (\\n) found.");
-  Deno.exit(1);
+    console.log("::error::❌ Unexpected pull request body format. No newline (\\n) found.");
+    Deno.exit(1);
 }
 const oldPrHeader = pullRequest.body.slice(0, firstNewlineIndex);
 console.log(`✔ Original pull request header: ${oldPrHeader}`);
@@ -75,43 +75,43 @@ const newPrHeader = HEADER_LIST[randomIndex];
 console.log(`✔ New pull request header: ${newPrHeader}`);
 
 if (!newPrHeader) {
-  console.log("🏃‍♂️ Empty header selected. Keeping the default header set by release-please. Header replacement skipped.");
-  Deno.exit(0);
+    console.log("🏃‍♂️ Empty header selected. Keeping the default header set by release-please. Header replacement skipped.");
+} else {
+    const newPrBody = newPrHeader + pullRequest.body.slice(firstNewlineIndex);
+
+    const [owner, repo] = GITHUB_REPOSITORY.split("/");
+    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/pulls/${pullRequest.number}`;
+    const prUrl = `https://github.com/${owner}/${repo}/pull/${pullRequest.number}`;
+
+    console.log(`Sending PATCH request (via GitHub REST API) to ${apiUrl}`);
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: "PATCH",
+            headers: {
+                "Authorization": `Bearer ${TOKEN}`,
+                "Accept": "application/vnd.github+json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ body: newPrBody }),
+        });
+
+        if (!response.ok) {
+            const errorBody = await response.json();
+            console.log(`::error::❌ Failed to update PR body. Status: ${response.status}`);
+            console.log("::group::Error response:");
+            console.log(JSON.stringify(errorBody, null, 2));
+            console.log("::endgroup::");
+            Deno.exit(1);
+        }
+    } catch (error) {
+        console.log("::error::❌ An unexpected error occurred during the fetch call.");
+        console.log(error);
+        Deno.exit(1);
+    }
+    
+    console.log(`✔ Successfully updated pull request: ${prUrl}`);
 }
 
-const newPrBody = newPrHeader + pullRequest.body.slice(firstNewlineIndex);
-
-const [owner, repo] = GITHUB_REPOSITORY.split("/");
-const apiUrl = `https://api.github.com/repos/${owner}/${repo}/pulls/${pullRequest.number}`;
-const prUrl = `https://github.com/${owner}/${repo}/pull/${pullRequest.number}`;
-
-console.log(`Sending PATCH request (via GitHub REST API) to ${apiUrl}`);
-
-try {
-  const response = await fetch(apiUrl, {
-    method: "PATCH",
-    headers: {
-      "Authorization": `Bearer ${TOKEN}`,
-      "Accept": "application/vnd.github+json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ body: newPrBody }),
-  });
-
-  if (!response.ok) {
-    const errorBody = await response.json();
-    console.log(`::error::❌ Failed to update PR body. Status: ${response.status}`);
-    console.log("::group::Error response:");
-    console.log(JSON.stringify(errorBody, null, 2));
-    console.log("::endgroup::");
-    Deno.exit(1);
-  }
-} catch (error) {
-  console.log("::error::❌ An unexpected error occurred during the fetch call.");
-  console.log(error);
-  Deno.exit(1);
-}
-
-console.log(`✔ Successfully updated pull request: ${prUrl}`);
 console.log("✔ Script 'set-random-header-to-release-please-pr.ts' finished successfully.");
 Deno.exit(0);
