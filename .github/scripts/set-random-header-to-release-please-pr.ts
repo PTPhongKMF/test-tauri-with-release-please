@@ -7,7 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * PullRequest type from the official googleapis/release-please repository.
+ * "PullRequest" type from the official googleapis/release-please repository.
  *
  * See: https://github.com/googleapis/release-please/blob/main/src/pull-request.ts#L15
  */
@@ -79,8 +79,7 @@ try {
             body: JSON.stringify({ body: newPrBody }),
         });
 
-        // if (!response.ok) {
-        if (true) {
+        if (!response.ok) {
             throw new Error(
                 `Failed to update PR body. Status: ${response.status}\n` +
                     "::group::Error response:\n" +
@@ -99,5 +98,5 @@ try {
     Deno.exit(1);
 }
 
-console.log("🔹 Script 'set-random-header-to-release-please-pr.ts' finished successfully.");
+console.log("🔹 Finished 'set-random-header-to-release-please-pr.ts' successfully.");
 Deno.exit(0);
