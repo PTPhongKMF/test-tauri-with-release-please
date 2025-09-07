@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.5.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.4.0...v0.5.0) (2025-09-07)
+
+
+### Features
+
+* let see ([b1b8245](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/b1b8245b618d8014159082fa8ddf18780e02b9a5))
+* nothing ([a8bf36a](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/a8bf36abd3da23d726202c12ff15c226b478c141))
+* test abrupt exit ([e09f594](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/e09f594f3f76fa8205f4fc38a55a6d1aa681a975))
+* test edit release ([0ed5816](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/0ed5816c50b3dd29193d58d0544c0cdcb3feb791))
+* test more abrupt ([bb8ea88](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/bb8ea88544d47a4baf928e775632f3718c03555b))
+
+
+### Bug Fixes
+
+* abrupt exit but all log now ([bbe1671](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/bbe1671262ab3b58faa292fdfbefb91c11811904))
+* hm ([9ad76eb](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/9ad76eb4963c3d9c90e7aaf1a43299736b2a77f0))
+* let see ([5990327](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/59903276e8856ae62674c43980a2c212663ed1bb))
+* not sure ([b7e4af1](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/b7e4af1c6c4f85a2ec399d10a31f4ed6851f6504))
+* pretty now? ([1920cb6](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/1920cb603fb1c4fdcbb93586362a1722a3ba3eef))
+* test abrutp correctly ([25367ca](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/25367cac73135397bdd116063a2a7bc63db1016c))
+
 ## [0.4.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.3.0...v0.4.0) (2025-09-06)
 
 
