@@ -1,7 +1,14 @@
-# A reusable Workflow for generating an installation token of a GitHub App. Can be used as a alternative identity/account
-# when acting on a repo
+# A composite GitHub Action for generating an installation token from a GitHub App.
+# This token authenticates as the GitHub App installation, so actions run with it
+# appear as the App (not the default GitHub Actions bot).
+#
+# Useful when you want workflow jobs to act as the App (the "initiator/author"),
+# and to allow triggering downstream workflows that GITHUB_TOKEN cannot trigger.
+#
+# Note: installation tokens are short-lived (expire after ~60 minutes),
+# so they should be generated on demand inside workflows.
 # 
-# This workflow should and only should be called by others, not act on githuc event
+# Intended to be called by other workflows.
 
 name: Generate GitHub App Token
 description: "Generate an installation token for a GitHub App"

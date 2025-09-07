@@ -114,3 +114,55 @@ button {
     background-color: #0f0f0f69;
   }
 }
+
+.navigation-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #646cff;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+  background-color: #535bf2;
+}
+
+.random-content-page {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.random-content-page pre {
+  background-color: #1a1a1a;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 800px;
+  white-space: pre-wrap;
+}
+
+.random-content-page img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.random-content-page button {
+  margin-top: 1rem;
+}
