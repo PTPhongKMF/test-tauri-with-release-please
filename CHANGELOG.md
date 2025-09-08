@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.11.0...v0.12.0) (2025-09-08)
+
+
+### Features
+
+* test title naming with ${scope} and ${branch?} ([3e1f3e2](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/3e1f3e2d6d0b46816f5deadf4bbb8c7c0c35cd3c))
+
 ## [0.11.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.10.0...v0.11.0) (2025-09-08)
 
 
