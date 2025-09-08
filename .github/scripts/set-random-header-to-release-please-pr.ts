@@ -24,11 +24,11 @@ interface PullRequest {
 }
 
 const HEADER_LIST = [
-  // "", // empty string: preserves the default header set by release-please
-  // "Header 2",
-  "🎶 Darling hold my haaand~ 🎶 Nothing beats a new release, and right now you can enjoy 50 bugs fixed free of charge ✈️",
-  // "Header 4",
-  // "Header 5",
+  "", // empty string: preserves the default header set by release-please
+  "Header 2",
+  "👒 Darling, a new release for you",
+  "Header 4",
+  "Header 5",
 ];
 
 console.log("🔹 Start set-random-header-to-release-please-pr.ts");

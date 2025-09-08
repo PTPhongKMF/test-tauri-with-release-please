@@ -25,12 +25,17 @@
           "type": "toml",
           "path": "src-tauri/Cargo.toml",
           "jsonpath": "$.package.version"
+        },
+        {
+          "type": "toml",
+          "path": "src-tauri/Cargo.lock",
+          "jsonpath": "$.package[?(@.name.value=='tauri-test-rp')].version"
         }
       ],
 
       "component-no-space": true,
 
-      "pull-request-title-pattern": "release(project): 🤖 v${version}",
+      "pull-request-title-pattern": "release(project): 🤖 ${component} v${version}",
 
       "changelog-path": "CHANGELOG.md"
     }
