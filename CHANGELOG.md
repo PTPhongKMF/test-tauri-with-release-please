@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.10.0...v0.11.0) (2025-09-08)
+
+
+### Features
+
+* will cargo.lock update? ([5ebc9b7](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/5ebc9b736103cfc98c08198d57b7e3910db0bbec))
+
 ## [0.10.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.9.0...v0.10.0) (2025-09-08)
 
 
