@@ -35,7 +35,7 @@
 
       "component-no-space": true,
 
-      "pull-request-title-pattern": "release(project): 🤖 ${component} v${version} ${scope} . {branch}",
+      "pull-request-title-pattern": "release(project): 🤖 ${component} v${version} {scope} . ${branch?}",
 
       "changelog-path": "CHANGELOG.md"
     }
