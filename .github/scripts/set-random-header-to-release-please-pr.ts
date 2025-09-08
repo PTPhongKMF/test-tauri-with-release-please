@@ -26,7 +26,7 @@ interface PullRequest {
 const HEADER_LIST = [
   // "", // empty string: preserves the default header set by release-please
   // "Header 2",
-  "🤖 Darling hold my haaand 🎶\nNothing beats a new release, and right now you can save yourself 50 bugs fixed per commit ✈️",
+  "🎶 Darling hold my haaand~ 🎶 Nothing beats a new release, and right now you can enjoy 50 bugs fixed free of charge ✈️",
   // "Header 4",
   // "Header 5",
 ];
