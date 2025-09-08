@@ -26,7 +26,7 @@ interface PullRequest {
 const HEADER_LIST = [
   "", // empty string: preserves the default header set by release-please
   "Header 2",
-  "👒 Darling, a new release for you",
+  "👒 Darling, I have a new release for you",
   "Header 4",
   "Header 5",
 ];
