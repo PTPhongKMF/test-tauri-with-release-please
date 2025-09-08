@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.14.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.13.0...v0.14.0) (2025-09-08)
+
+
+### Features
+
+* correct title? ([91f59b7](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/91f59b766c16e57c3be66c015595a10d7a909bbb))
+* work now ([e111b1b](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/e111b1b5d6f4f32c473e4fe2857c84eb6e3efeb0))
+
+
+### Bug Fixes
+
+* no ? in branch ([785952b](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/785952b7b89a076cfb6f7f30eea7e214d7e76fef))
+* would be error ([fe9567a](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/fe9567ae6e384531c0ad6d090f9d5f70b34b54d1))
+
 ## [0.13.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.12.0...v0.13.0) (2025-09-08)
 
 
