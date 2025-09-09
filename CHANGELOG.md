@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.17.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.16.0...v0.17.0) (2025-09-09)
+
+
+### Features
+
+* try custom tauriScript ([5ca6a1a](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/5ca6a1adfc9b694f869aa0cb068e4e0574f5bec9))
+
 ## [0.16.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.15.0...v0.16.0) (2025-09-09)
 
 
