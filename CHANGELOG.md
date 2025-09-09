@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.16.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.15.0...v0.16.0) (2025-09-09)
+
+
+### Features
+
+* test without deno install ([3ff9163](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/3ff9163e76f3472df67976f9fe7f3d339d023770))
+
 ## [0.15.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.14.0...v0.15.0) (2025-09-09)
 
 
