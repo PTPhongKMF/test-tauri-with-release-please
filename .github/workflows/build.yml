@@ -38,16 +38,16 @@ jobs:
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Install frontend dependencies
-        run: deno install
+      # - name: Install frontend dependencies
+      #   run: deno install
 
       - name: Build and Upload Installer
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          releaseId: ${{ github.event.release.id }}
-          # tagName: ${{ github.event.release.tag_name }}
+          # releaseId: ${{ github.event.release.id }}
+          tagName: ${{ github.event.release.tag_name }}
           args: ${{ matrix.args }}
 
       # - name: Build and Upload Portable
