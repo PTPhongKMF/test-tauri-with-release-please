@@ -38,8 +38,8 @@ jobs:
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
 
-      # - name: Install frontend dependencies
-      #   run: deno install
+      - name: Install frontend dependencies
+        run: deno install
 
       - name: Build and Upload Installer
         uses: tauri-apps/tauri-action@v0
@@ -48,6 +48,7 @@ jobs:
         with:
           # releaseId: ${{ github.event.release.id }}
           tagName: ${{ github.event.release.tag_name }}
+          tauriScript: deno task tauri
           args: ${{ matrix.args }}
 
       # - name: Build and Upload Portable
