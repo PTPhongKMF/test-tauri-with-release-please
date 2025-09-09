@@ -1,0 +1,55 @@
+name: Build Tauri
+
+on: 
+  release: 
+    types:
+      - published
+
+# Effective only for the default GITHUB_TOKEN; ignored for others (e.g., PAT, GitHub App installation token)
+permissions: 
+  contents: write
+
+jobs:
+  build-and-upload:
+    name: Build and Upload Release Assets
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # - platform: "macos-latest" # for Arm based macs (M1 and above).
+          #   args: "--target aarch64-apple-darwin"
+          # - platform: "macos-latest" # for Intel based macs.
+          #   args: "--target x86_64-apple-darwin"
+          # - platform: "ubuntu-22.04" # for Tauri v1 you could replace this with ubuntu-20.04.
+          #   args: ""
+          - platform: "windows-latest" # we only support windows for now
+            args: ""
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Deno runtime
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x # latest stable for v2.x major
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install frontend dependencies
+        run: deno install
+
+      - name: Build and Upload Installer
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          releaseId: ${{ github.event.release.id }}
+          # tagName: ${{ github.event.release.tag_name }}
+          args: ${{ matrix.args }}
+
+      # - name: Build and Upload Portable
+      #   if: matrix.platform == 'windows-latest'
+      #   # uses:

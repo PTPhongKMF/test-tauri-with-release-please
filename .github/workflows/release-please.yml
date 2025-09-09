@@ -11,6 +11,7 @@ on:
     branches:
       - main
 
+# Effective only for the default GITHUB_TOKEN; ignored for others (e.g., PAT, GitHub App installation token)
 permissions:
   contents: write
   pull-requests: write

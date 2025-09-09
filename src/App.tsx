@@ -1,6 +1,6 @@
-import { Router, Routes, Route } from "@solidjs/router";
+import { Router, Route } from "@solidjs/router";
 import "./App.css";
-import RandomContentPage from "./pages/RandomContentPage";
+import RandomContentPage from "./pages/RandomContentPage.tsx";
 
 function HomePage() {
   return (
@@ -18,10 +18,10 @@ function HomePage() {
 function App() {
   return (
     <Router>
-      <Routes>
+      <Route>
         <Route path="/" component={HomePage} />
         <Route path="/page/:id" component={RandomContentPage} />
-      </Routes>
+      </Route>
     </Router>
   );
 }
