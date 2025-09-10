@@ -3,7 +3,7 @@ name: Build Tauri
 on: 
   release: 
     types:
-      - created
+      - published
 
 # Effective only for the default GITHUB_TOKEN; ignored for others (e.g., PAT, GitHub App installation token)
 permissions: 

@@ -116,8 +116,8 @@ async function fetchOrThrow(...args: Parameters<typeof fetch>): Promise<Response
 
 async function runScript() {
   const inputs = getRequiredInputs();
-  const insertMarkdownStr = await Deno.readTextFile(".github/scripts/assets/insert-release-note.md");
-  if (!insertMarkdownStr) throw new Error("📄 '.github/scripts/assets/insert-release-note.md' is empty.");
+  const insertMarkdownStr = await Deno.readTextFile(".github/scripts/insert-markdown-to-release-please-release-note/insert-markdown.md");
+  if (!insertMarkdownStr) throw new Error("📄 '.github/scr/insert-markdown-to-release-please-release-note/insert-markdown.md' is empty.");
 
   const [owner, repo] = inputs.githubRepo.split("/");
   const releaseTagUrl = `https://github.com/${owner}/${repo}/releases/tag/${inputs.tagName}`;

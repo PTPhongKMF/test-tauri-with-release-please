@@ -93,7 +93,7 @@ jobs:
           deno-version: v2.x # latest stable for v2.x major
 
       - name: Run insert additional markdown to release note script
-        run: deno run --allow-read --allow-env --allow-net .github/scripts/insert-markdown-to-release-please-release-note.ts
+        run: deno run --allow-read --allow-env --allow-net .github/scripts/insert-markdown-to-release-please-release-note/main.ts
         env:
           TOKEN: ${{ steps.generate-token.outputs.token }}
           TAG_NAME: ${{ needs.release-please-core.outputs.tag_name }}
