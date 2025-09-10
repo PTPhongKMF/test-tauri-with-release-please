@@ -1,4 +1,4 @@
-//> build-and-upload-tauri-portable-bundle.ts
+//>>>> build-and-upload-tauri-portable-bundle.ts
 // 
 // Run the installer produced by tauri-action, capture the installed files,
 // produce a portable ZIP, and attach it to the GitHub release.
