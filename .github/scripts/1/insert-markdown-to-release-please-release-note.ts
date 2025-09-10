@@ -76,9 +76,13 @@ interface Release {
   reactions?: unknown;
 }
 
-console.log("🔹 Start insert-markdown-to-release-please-release-note.ts");
+interface RequiredInputs {
+  token: string;
+  githubRepo: string;
+  tagName: string;
+}
 
-try {
+function getRequiredInputs(): RequiredInputs {
   const TOKEN = Deno.env.get("TOKEN");
   if (!TOKEN) throw new Error("🔑 TOKEN environment variable is not defined.");
 
@@ -88,65 +92,84 @@ try {
   const TAG_NAME = Deno.env.get("TAG_NAME");
   if (!TAG_NAME) throw new Error("TAG_NAME environment variable is not defined.");
 
-  const prependMarkdownStr = await Deno.readTextFile(".github/scripts/assets/prepend-release-note.md");
+  return {
+    token: TOKEN,
+    githubRepo: GITHUB_REPOSITORY,
+    tagName: TAG_NAME,
+  };
+}
 
-  const [owner, repo] = GITHUB_REPOSITORY.split("/");
-  const releaseTagUrl = `https://github.com/${owner}/${repo}/releases/tag/${TAG_NAME}`;
+async function fetchOrThrow(...args: Parameters<typeof fetch>): Promise<Response> {
+  const response = await fetch(...args);
 
-  const getApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/tags/${TAG_NAME}`;
-
-  console.log(`Sending GET request (via GitHub REST API) to ${getApiUrl}`);
-  const getReleaseResponse = await fetch(getApiUrl, {
-    headers: {
-      "Authorization": `Bearer ${TOKEN}`,
-      "Accept": "application/vnd.github+json",
-    },
-  });
-
-  if (!getReleaseResponse.ok) {
+  if (!response.ok) {
     throw new Error(
-      `Failed to fetch release. Status: ${getReleaseResponse.status}\n` +
+      `Request failed. Status: ${response.status}\n` +
         "::group::Error response:\n" +
-        `${JSON.stringify(await getReleaseResponse.json(), null, 2)}\n` +
+        `${JSON.stringify(await response.json(), null, 2)}\n` +
         "::endgroup::",
     );
   }
 
-  const release = await getReleaseResponse.json() as Release;
-  const releaseId = release.id;
-  const releaseBody = release.body ?? "";
+  return response;
+}
 
-  const patchApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/${releaseId}`;
-  const newReleaseBody = `${prependMarkdownStr.trim()}\n\n\n${releaseBody.trim()}`;
+async function runScript() {
+  const inputs = getRequiredInputs();
+  const insertMarkdownStr = await Deno.readTextFile(".github/scripts/assets/insert-release-note.md");
+  if (!insertMarkdownStr) throw new Error("📄 '.github/scripts/assets/insert-release-note.md' is empty.");
+
+  const [owner, repo] = inputs.githubRepo.split("/");
+  const releaseTagUrl = `https://github.com/${owner}/${repo}/releases/tag/${inputs.tagName}`;
+
+  const getApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/tags/${inputs.tagName}`;
+
+  console.log(`Sending GET request (via GitHub REST API) to ${getApiUrl}`);
+  const getReleaseResponse = await fetchOrThrow(getApiUrl, {
+    headers: {
+      "Authorization": `Bearer ${inputs.token}`,
+      "Accept": "application/vnd.github+json",
+    },
+  });
+
+  const release = await getReleaseResponse.json() as Release;
+
+  const MARKER_START = "<!-- additional-markdown:start -->";
+  const MARKER_END = "<!-- additional-markdown:end -->";
+
+  if (release.body?.includes(MARKER_START)) {
+    console.log("::notice::🏃‍♂️ Release already contains an inserted markdown block. Skipped.");
+    return;
+  }
+
+  const patchApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/${release.id}`;
+  const newReleaseBody = `${MARKER_START}\n${insertMarkdownStr.trim()}\n${MARKER_END}\n\n\n${release.body || ""}`;
 
   console.log(`Sending PATCH request (via GitHub REST API) to ${patchApiUrl}`);
-  const patchReleaseResponse = await fetch(patchApiUrl, {
+  await fetch(patchApiUrl, {
     method: "PATCH",
     headers: {
-      "Authorization": `Bearer ${TOKEN}`,
+      "Authorization": `Bearer ${inputs.token}`,
       "Accept": "application/vnd.github+json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ body: newReleaseBody }),
   });
 
-  if (!patchReleaseResponse.ok) {
-    throw new Error(
-      `Failed to update release note. Status: ${patchReleaseResponse.status}\n` +
-        "::group::Error response:\n" +
-        `${JSON.stringify(await patchReleaseResponse.json(), null, 2)}\n` +
-        "::endgroup::",
-    );
-  }
-
   console.log(`✔ Successfully fetched and updated release: ${releaseTagUrl}`);
-} catch (error) {
-  console.log(
-    "::error::❌ An unexpected error occurred.\n" +
-      error,
-  );
-  Deno.exit(1);
 }
 
-console.log("🔹 Finished 'insert-markdown-to-release-please-release-note.ts' successfully.");
-Deno.exit(0);
+async function main() {
+  console.log("🔹 Start insert-markdown-to-release-please-release-note.ts");
+
+  try {
+    await runScript();
+  } catch (error) {
+    console.log("::error::❌ An unexpected error occurred.\n" + error);
+    Deno.exit(1);
+  }
+
+  console.log("🔹 Finished 'insert-markdown-to-release-please-release-note.ts' successfully.");
+}
+
+main();
