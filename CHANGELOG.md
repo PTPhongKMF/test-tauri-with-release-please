@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.18.0...v0.19.0) (2025-09-10)
+
+
+### Features
+
+* test new script ([b7589da](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/b7589da896289e0abf4399c53741840392245105))
+* test release draft ([786b08a](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/786b08ab6f07bf2b03c5b55e39a358e04ad83284))
+
 ## [0.18.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.17.0...v0.18.0) (2025-09-10)
 
 
