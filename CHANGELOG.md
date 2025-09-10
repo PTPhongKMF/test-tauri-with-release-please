@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.17.0...v0.18.0) (2025-09-10)
+
+
+### Features
+
+* scrit no exit 1 test ([50e2479](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/50e24792fd0b49eefb5dc629f837e925cdb8574f))
+
 ## [0.17.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.16.0...v0.17.0) (2025-09-09)
 
 
