@@ -37,9 +37,7 @@
 
       "pull-request-title-pattern": "release(project.${branch}): 🤖 ${component} v${version}",
 
-      "changelog-path": "CHANGELOG.md",
-
-      "draft": true
+      "changelog-path": "CHANGELOG.md"
     }
   }
 }

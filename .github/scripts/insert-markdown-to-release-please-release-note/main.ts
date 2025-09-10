@@ -1,8 +1,7 @@
-/** insert-markdown-to-release-please-release-note.ts
- *
- * This script inserts content from a markdown file to the release note
- * of a GitHub release created by release-please (workflows/release-please.yml).
- */
+//> insert-markdown-to-release-please-release-note.ts
+// 
+// This script inserts content from a markdown file to the release note
+// of a GitHub release created by release-please (workflows/release-please.yml).
 
 ///////////////////////////////////////////////////////////////////////////////////////
 

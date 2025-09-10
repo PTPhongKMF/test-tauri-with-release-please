@@ -43,35 +43,6 @@ jobs:
 
           config-file: .github/release-please-config.json
           manifest-file: .github/.release-please-manifest.json
-      
-      - name: 'Log Outputs'
-        # This condition ensures the logging step only runs if a release was made.
-        # if: steps.run-rp-action.outputs.releases_created == 'true'
-        run: |
-          echo "-------------------------------------------"
-          echo "  Release Please Action Outputs"
-          echo "-------------------------------------------"
-          
-          echo "Generic Outputs:"
-          echo "  releases_created: ${{ steps.run-rp-action.outputs.releases_created }}"
-          echo "  paths_released: ${{ steps.run-rp-action.outputs.paths_released }}"
-          echo "  prs_created: ${{ steps.run-rp-action.outputs.prs_created }}"
-          echo '  pr: ${{ steps.run-rp-action.outputs.pr }}'
-          echo '  prs: ${{ steps.run-rp-action.outputs.prs }}'
-          
-          echo ""
-          echo "Root Component Outputs:"
-          echo "  release_created: ${{ steps.run-rp-action.outputs.release_created }}"
-          echo "  upload_url: ${{ steps.run-rp-action.outputs.upload_url }}"
-          echo "  html_url: ${{ steps.run-rp-action.outputs.html_url }}"
-          echo "  tag_name: ${{ steps.run-rp-action.outputs.tag_name }}"
-          echo "  version: ${{ steps.run-rp-action.outputs.version }}"
-          echo "  major: ${{ steps.run-rp-action.outputs.major }}"
-          echo "  minor: ${{ steps.run-rp-action.outputs.minor }}"
-          echo "  patch: ${{ steps.run-rp-action.outputs.patch }}"
-          echo "  sha: ${{ steps.run-rp-action.outputs.sha }}"
-          
-          echo "-------------------------------------------"
 
   release-please-custom-pull-request-tasks:
     name: (Post RP) Manage Custom Pull Request Tasks

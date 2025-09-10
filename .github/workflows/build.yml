@@ -42,6 +42,7 @@ jobs:
         run: deno install
 
       - name: Build and Upload Installer
+        id: build-installer
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -51,6 +52,22 @@ jobs:
           tauriScript: deno task tauri
           args: ${{ matrix.args }}
 
+      - name: Debug tauri outputs (minimal)
+        if: always()
+        shell: bash
+        run: |
+          echo "releaseId: ${{ steps.build-installer.outputs.releaseId }}"
+          echo "releaseHtmlUrl: ${{ steps.build-installer.outputs.releaseHtmlUrl }}"
+          echo "releaseUploadUrl: ${{ steps.build-installer.outputs.releaseUploadUrl }}"
+          echo "artifactPaths: ${{ steps.build-installer.outputs.artifactPaths }}"
+          echo "appVersion: ${{ steps.build-installer.outputs.appVersion }}"
+
       # - name: Build and Upload Portable
       #   if: matrix.platform == 'windows-latest'
-      #   # uses:
+      #   run: deno run --allow-env .github/scripts/build-and-upload-tauri-portable-bundle.ts
+      #   env:
+      #     TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     ARTIFACT_PATHS: ${{ steps.build-installer.outputs.artifactPaths }}
+      #     RELEASE_UPLOAD_URL: ${{ steps.build-installer.outputs.releaseUploadUrl }}
+      #     TAG_NAME: ${{ github.event.release.tag_name }}
+          
