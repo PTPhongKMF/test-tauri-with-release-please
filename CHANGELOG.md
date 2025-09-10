@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.24.0...v0.25.0) (2025-09-10)
+
+
+### Features
+
+* test draft ([b063642](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/b063642150848f7f9817522b98743789f54a4e3f))
+
 ## [0.24.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.23.0...v0.24.0) (2025-09-10)
 
 
