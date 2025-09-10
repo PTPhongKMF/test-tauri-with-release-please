@@ -1,8 +1,5 @@
 # Workflow for generating CHANGELOG.md, creating a GitHub release tag, and bumping the project version.
 # Powered by https://github.com/googleapis/release-please / https://github.com/googleapis/release-please-action
-#
-# This workflow also runs a small Deno script that selects a random header and applies it to the release-please
-# pull request whenever it is created or updated.
 
 name: Release Please
 
@@ -95,8 +92,8 @@ jobs:
         with:
           deno-version: v2.x # latest stable for v2.x major
 
-      - name: Run prepend markdown to release note script
-        run: deno run --allow-read --allow-env --allow-net .github/scripts/prepend-markdown-to-release-please-release-note.ts
+      - name: Run insert additional markdown to release note script
+        run: deno run --allow-read --allow-env --allow-net .github/scripts/insert-markdown-to-release-please-release-note.ts
         env:
           TOKEN: ${{ steps.generate-token.outputs.token }}
           TAG_NAME: ${{ needs.release-please-core.outputs.tag_name }}

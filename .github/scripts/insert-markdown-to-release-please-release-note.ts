@@ -1,6 +1,6 @@
-/** prepend-markdown-to-release-please-release-note.ts
+/** insert-markdown-to-release-please-release-note.ts
  *
- * This script prepends content from a markdown file to the release note
+ * This script inserts content from a markdown file to the release note
  * of a GitHub release created by release-please (workflows/release-please.yml).
  */
 
@@ -76,7 +76,7 @@ interface Release {
   reactions?: unknown;
 }
 
-console.log("🔹 Start prepend-markdown-to-release-please-release-note.ts");
+console.log("🔹 Start insert-markdown-to-release-please-release-note.ts");
 
 try {
   const TOKEN = Deno.env.get("TOKEN");
@@ -148,5 +148,5 @@ try {
   Deno.exit(1);
 }
 
-console.log("🔹 Finished 'prepend-markdown-to-release-please-release-note.ts' successfully.");
+console.log("🔹 Finished 'insert-markdown-to-release-please-release-note.ts' successfully.");
 Deno.exit(0);

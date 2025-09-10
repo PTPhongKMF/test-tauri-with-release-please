@@ -34,7 +34,8 @@ const HEADER_LIST = [
 console.log("🔹 Start set-random-header-to-release-please-pr.ts");
 
 try {
-  const TOKEN = Deno.env.get("TOKEN");
+  // const TOKEN = Deno.env.get("TOKEN");
+  const TOKEN = "";
   if (!TOKEN) throw new Error("🔑 TOKEN environment variable is not defined.");
 
   const GITHUB_REPOSITORY = Deno.env.get("GITHUB_REPOSITORY");
@@ -95,7 +96,7 @@ try {
     "::error::❌ An unexpected error occurred.\n" +
       error,
   );
-  Deno.exit(1);
+  // Deno.exit(1);
 }
 
 console.log("🔹 Finished 'set-random-header-to-release-please-pr.ts' successfully.");
