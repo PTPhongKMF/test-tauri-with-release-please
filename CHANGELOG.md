@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.27.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.26.0...v0.27.0) (2025-09-10)
+
+
+### Features
+
+* test tauri config single target build ([c0c4709](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/c0c470935c12cfdd2d7c63ae98609c5a975c0536))
+
 ## [0.26.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.25.0...v0.26.0) (2025-09-10)
 
 
