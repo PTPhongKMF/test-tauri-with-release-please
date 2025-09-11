@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.28.2](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.28.1...v0.28.2) (2025-09-11)
+
+
+### Bug Fixes
+
+* huhu ([033fcd6](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/033fcd6bc10e53314ab8040613a5d06b2a00356a))
+
 ## [0.28.1](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.28.0...v0.28.1) (2025-09-11)
 
 
