@@ -57,7 +57,7 @@ jobs:
         shell: bash
         run: |
           echo "releaseId: ${{ steps.build-installer.outputs.releaseId }}"
-          echo "releaseId from event: ${{ github.event.release.id }}
+          echo "releaseId from event: ${{ github.event.release.id }}"
           echo "releaseHtmlUrl: ${{ steps.build-installer.outputs.releaseHtmlUrl }}"
           echo "releaseUploadUrl: ${{ steps.build-installer.outputs.releaseUploadUrl }}"
           echo "artifactPaths: ${{ steps.build-installer.outputs.artifactPaths }}"
