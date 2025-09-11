@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.28.1](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.28.0...v0.28.1) (2025-09-11)
+
+
+### Bug Fixes
+
+* run zip again please... ([84ea6c1](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/84ea6c1b87997d0654ae44fd5fba2d61d02ae6fd))
+
 ## [0.28.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.27.0...v0.28.0) (2025-09-11)
 
 
