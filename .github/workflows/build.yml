@@ -65,7 +65,7 @@ jobs:
 
       - name: Build and Upload Portable
         if: matrix.platform == 'windows-latest'
-        run: deno run --allow-en --allow-read --allow-write --allow-run .github/scripts/build-and-upload-tauri-portable-bundle.ts
+        run: deno run --allow-env --allow-read --allow-write --allow-run .github/scripts/build-and-upload-tauri-portable-bundle.ts
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG_NAME: ${{ github.event.release.tag_name }}

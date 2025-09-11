@@ -29,8 +29,8 @@ interface RequiredInputs {
 }
 
 const HEADER_LIST = [
-  "", // empty string: preserves the default header set by release-please
-  "Header 2",
+  "🕊 Keep releasing forward. Even if it breaks. Even after sunset.",
+  "🌺 Master, the release is ready to be served",
   "👒 Darling, I have a new release for you",
   "Header 4",
   "Header 5",
