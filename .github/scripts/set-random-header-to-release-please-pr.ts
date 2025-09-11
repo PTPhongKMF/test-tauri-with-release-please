@@ -69,6 +69,7 @@ async function fetchOrThrow(...args: Parameters<typeof fetch>): Promise<Response
 }
 
 async function runScript() {
+  console.log("Collecting required inputs...");
   const inputs = getRequiredInputs();
 
   console.log("Parsing pull request JSON string...");

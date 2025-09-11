@@ -57,17 +57,19 @@ jobs:
         shell: bash
         run: |
           echo "releaseId: ${{ steps.build-installer.outputs.releaseId }}"
+          echo "releaseId from event: ${{ github.event.release.id }}
           echo "releaseHtmlUrl: ${{ steps.build-installer.outputs.releaseHtmlUrl }}"
           echo "releaseUploadUrl: ${{ steps.build-installer.outputs.releaseUploadUrl }}"
           echo "artifactPaths: ${{ steps.build-installer.outputs.artifactPaths }}"
           echo "appVersion: ${{ steps.build-installer.outputs.appVersion }}"
 
-      # - name: Build and Upload Portable
-      #   if: matrix.platform == 'windows-latest'
-      #   run: deno run --allow-env .github/scripts/build-and-upload-tauri-portable-bundle.ts
-      #   env:
-      #     TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     ARTIFACT_PATHS: ${{ steps.build-installer.outputs.artifactPaths }}
-      #     RELEASE_UPLOAD_URL: ${{ steps.build-installer.outputs.releaseUploadUrl }}
-      #     TAG_NAME: ${{ github.event.release.tag_name }}
+      - name: Build and Upload Portable
+        if: matrix.platform == 'windows-latest'
+        run: deno run --allow-en --allow-read --allow-write --allow-run .github/scripts/build-and-upload-tauri-portable-bundle.ts
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: ${{ github.event.release.tag_name }}
+          ARTIFACT_PATHS: ${{ steps.build-installer.outputs.artifactPaths }}
+          HTML_URL: ${{ github.event.release.html_url }}
+          UPLOAD_URL: ${{ github.event.release.upload_url }}
           

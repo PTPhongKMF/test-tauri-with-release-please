@@ -34,9 +34,10 @@ export default function RandomContentPage() {
 
   return (
     <div class="random-content-page">
-      <pre class="pretext">{selectedText()}</pre>
+      <p class="pretext">{selectedText()}</p>
       {selectedImage() && <img src={selectedImage()} alt="Random content" />}
       <button onClick={() => history.back()}>Go Back</button>
     </div>
   );
 }
+
