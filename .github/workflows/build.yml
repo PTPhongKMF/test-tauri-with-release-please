@@ -9,6 +9,9 @@ on:
 permissions: 
   contents: write
 
+env:
+  APP_NAME: project-test-tauri # will be used to name the portable .zip
+
 jobs:
   build-and-upload:
     name: Build and Upload Release Assets
@@ -23,6 +26,7 @@ jobs:
           # - platform: "ubuntu-22.04" # for Tauri v1 you could replace this with ubuntu-20.04.
           #   args: ""
           - platform: "windows-latest" # we only support windows for now
+            os-name: "windows" 
             args: ""
 
     runs-on: ${{ matrix.platform }}
@@ -65,9 +69,11 @@ jobs:
 
       - name: Build and Upload Portable
         if: matrix.platform == 'windows-latest'
-        run: deno run --allow-env --allow-read --allow-write --allow-run .github/scripts/build-and-upload-tauri-portable-bundle.ts
+        run: deno run --allow-env --allow-net --allow-read --allow-write --allow-run .github/scripts/build-and-upload-tauri-portable-bundle.ts
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OS_NAME: ${{ matrix.os-name }}
+          RELEASE_ID: ${{ github.event.release.id }}
           TAG_NAME: ${{ github.event.release.tag_name }}
           ARTIFACT_PATHS: ${{ steps.build-installer.outputs.artifactPaths }}
           HTML_URL: ${{ github.event.release.html_url }}
