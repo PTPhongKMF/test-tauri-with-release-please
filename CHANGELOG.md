@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.31.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.30.1...v0.31.0) (2025-09-12)
+
+
+### Features
+
+* delete asset when duplicate now ([209566a](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/209566ae1aa6a3aadf4f03b12afee92d276f0757))
+
 ## [0.30.1](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.30.0...v0.30.1) (2025-09-12)
 
 
