@@ -146,8 +146,8 @@ function getRequiredInputs(): RequiredInputs {
   const WORKSPACE = Deno.env.get("GITHUB_WORKSPACE") ?? Deno.cwd();
   const RUNNER_TEMP = Deno.env.get("RUNNER_TEMP");
 
-  const RELEASE_ID = Deno.env.get("RELEASE_ID ");
-  if (!RELEASE_ID) throw new Error("RELEASE_ID  environment variable is not defined.");
+  const RELEASE_ID = Deno.env.get("RELEASE_ID");
+  if (!RELEASE_ID) throw new Error("RELEASE_ID environment variable is not defined.");
 
   const TAG_NAME = Deno.env.get("TAG_NAME") ?? Deno.env.get("GITHUB_REF_NAME");
   if (!TAG_NAME) throw new Error("TAG_NAME environment variable is not defined.");
