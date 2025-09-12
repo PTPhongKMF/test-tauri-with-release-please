@@ -5,6 +5,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
+import { join } from "jsr:@std/path/join";
+
 interface RequiredInputs {
   token: string;
   githubRepo: string;
@@ -75,8 +77,17 @@ async function fetchOrThrow(...args: Parameters<typeof fetch>): Promise<Response
   return response;
 }
 
+async function exists(p: string) {
+  try {
+    await Deno.stat(p);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 async function runInstaller(inputs: RequiredInputs, installDir: string) {
-  console.log("Candidate artifact path(s):" + inputs.artifactPaths.map((p) => `\n${p}`).join(""));
+  console.log("Candidate artifact path(s):" + inputs.artifactPaths.map((p) => `\n > ${p}`).join(""));
 
   // prefer nsis setup.exe ending with -setup.exe, else any .exe
   const installer = inputs.artifactPaths.find((p) => /-setup\.exe$/i.test(p)) ??
@@ -101,7 +112,25 @@ async function runInstaller(inputs: RequiredInputs, installDir: string) {
   const status = await child.status;
   if (!status.success) throw new Error("Installer exited with non-zero status.");
 
-  console.log("🔎 Verifying install directory: ${installDir}");
+  if (!(await exists(installDir))) {
+    console.log("Install folder not found; searching common Program Files locations for installed files...");
+    const pf = Deno.env.get("ProgramFiles");
+    const pf86 = Deno.env.get("ProgramFiles(x86)");
+    const candidates = [pf, pf86].filter(Boolean);
+    for (const c of candidates) {
+      try {
+        if (!c) break;
+        console.log("Contents of", c);
+        for await (const e of Deno.readDir(c)) {
+          console.log(" -", e.name);
+        }
+      } catch (err: any) {
+        console.warn("Could not read", c, ":", err.message ?? err);
+      }
+    }
+  }
+
+  console.log(`🔎 Verifying install directory: ${installDir}`);
   let installedAny = false;
   for await (const _ of Deno.readDir(installDir)) {
     installedAny = true;
@@ -118,14 +147,14 @@ async function runInstaller(inputs: RequiredInputs, installDir: string) {
 
 async function bundleToPortableZip(inputs: RequiredInputs, installDir: string): Promise<PortableZip> {
   const zipName = `windows-portable-${inputs.tagName}.zip`;
-  const zipPath = `${inputs.workspace}/${zipName}`;
+  const zipPath = join(inputs.workspace, zipName);
   try {
     await Deno.remove(zipPath);
   } catch { /* ignore */ }
 
   console.log("Zipping on Windows using PowerShell Compress-Archive...");
   const cmd = new Deno.Command("powershell", {
-    args: ["-NoProfile", "-Command", `Compress-Archive -Path "${installDir}\\\\*" -DestinationPath "${zipPath}" -Force`],
+    args: ["-NoProfile", "-Command", `Compress-Archive -Path '${installDir}\\*' -DestinationPath '${zipPath}' -Force`],
     stdout: "inherit",
     stderr: "inherit",
   });
@@ -145,8 +174,9 @@ async function runScript() {
   console.log("Collecting required inputs...");
   const inputs = getRequiredInputs();
 
-  const tempBase = inputs.runnerTemp ?? (inputs.workspace + "/.tmp");
-  const installDir = `${tempBase}/portable_install`;
+  const baseTemp = inputs.runnerTemp ?? join(inputs.workspace, ".tmp");
+  const unique = `${inputs.tagName.replace(/[^A-Za-z0-9._-]/g, "_")}-${Date.now()}`;
+  const installDir = join(baseTemp, `portable-${unique}`);
   console.log(`Install dir: ${installDir}`);
 
   console.log("Preparing to run installer...");
@@ -167,7 +197,6 @@ async function runScript() {
       "Authorization": `Bearer ${inputs.token}`,
       "Accept": "application/vnd.github+json",
       "Content-Type": "application/zip",
-      "Content-Length": String(zipFileBytes.length),
     },
     body: zipFileBytes,
   });
