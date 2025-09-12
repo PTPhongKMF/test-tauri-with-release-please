@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.32.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.31.0...v0.32.0) (2025-09-12)
+
+
+### Features
+
+* improve portable .zip ([3bdd727](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/3bdd727efc03c0448caf3756567ba4be017f20ab))
+
 ## [0.31.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.30.1...v0.31.0) (2025-09-12)
 
 
