@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.30.1](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.30.0...v0.30.1) (2025-09-12)
+
+
+### Bug Fixes
+
+* fix whitespace in RELEASE_ID ([436df10](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/436df1070eb2f29807f4a5fd7cf28a63e4f61950))
+
 ## [0.30.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.29.0...v0.30.0) (2025-09-12)
 
 
