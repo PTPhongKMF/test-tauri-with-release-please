@@ -239,6 +239,23 @@ async function runInstaller(inputs: RequiredInputs, installDir: string) {
   }
 }
 
+async function cleanupInstallerArtifacts(installDir: string): Promise<void> {
+  console.log("::group::Deleting 'uninstall'-related files...");
+  for await (const entry of Deno.readDir(installDir)) {
+    if (/uninstall/i.test(entry.name)) {
+      const p = join(installDir, entry.name);
+      try {
+        await Deno.remove(p, { recursive: entry.isDirectory });
+        // Specific internal log about what was removed
+        console.log(`Removed uninstall entry: ${p}`);
+      } catch (err) {
+        console.log(`Failed to remove uninstall entry ${p}: ${String(err)}`);
+      }
+    }
+  }
+  console.log("::endgroup::");
+}
+
 async function bundleToPortableZip(inputs: RequiredInputs, zipName: string, installDir: string): Promise<PortableZip> {
   const zipPath = join(inputs.workspace, zipName);
   try {
@@ -247,7 +264,7 @@ async function bundleToPortableZip(inputs: RequiredInputs, zipName: string, inst
 
   console.log("Zipping on Windows using PowerShell Compress-Archive...");
   const cmd = new Deno.Command("powershell", {
-    args: ["-NoProfile", "-Command", `Compress-Archive -Path '${installDir}\\*' -DestinationPath '${zipPath}' -Force`],
+    args: ["-NoProfile", "-Command", `Compress-Archive -Path '${installDir}' -DestinationPath '${zipPath}' -Force`],
     stdout: "inherit",
     stderr: "inherit",
   });
@@ -306,13 +323,16 @@ async function runScript() {
 
   const baseTemp = inputs.runnerTemp ?? join(inputs.workspace, ".tmp");
   const unique = `${inputs.tagName.replace(/[^A-Za-z0-9._-]/g, "_")}-${Date.now()}`;
-  const installDir = join(baseTemp, `portable-${unique}`);
+  const installDir = join(baseTemp, `portable-${unique}`, inputs.appName);
   console.log(`Install dir: ${installDir}`);
 
   console.log("Preparing to run installer...");
   await runInstaller(inputs, installDir);
 
-  console.log("Preparing to bundle installed assets into portable zip...");
+  console.log("🔧 Cleaning up installer miscellaneous files after installation (e.g. uninstall.exe)...");
+  await cleanupInstallerArtifacts(installDir);
+
+  console.log("Preparing to bundle installed assets into a portable zip...");
   const zip = await bundleToPortableZip(inputs, zipFilename, installDir);
 
   const zipFileBytes = await Deno.readFile(zip.path);
