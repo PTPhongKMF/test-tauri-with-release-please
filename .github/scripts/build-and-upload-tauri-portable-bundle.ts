@@ -284,11 +284,25 @@ async function runScript() {
   });
 
   const release = await getReleaseResponse.json() as Release;
-  if (release.assets.some((a) => a.name === zipFilename)) {
-    throw new Error(`Release already contains '${zipFilename}'. Aborted.`);
-  }
 
-  console.log(`✔ No existing asset named '${zipFilename}' found. Continuing...`);
+  const existingAsset = release.assets.find((a) => a.name === zipFilename);
+  if (existingAsset) {
+    console.log(`Asset '${zipFilename}' already exists on release. Deleting it to replace...`);
+    const deleteApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/assets/${existingAsset.id}`;
+
+    console.log(`Sending DELETE request (via GitHub REST API) to ${deleteApiUrl}`);
+    await fetchOrThrow(deleteApiUrl, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${inputs.token}`,
+        Accept: "application/vnd.github+json",
+      },
+    });
+
+    console.log(`✔ Deleted existing asset '${zipFilename}' (id=${existingAsset.id}).`);
+  } else {
+    console.log(`✔ No existing asset named '${zipFilename}' found. Continuing...`);
+  }
 
   const baseTemp = inputs.runnerTemp ?? join(inputs.workspace, ".tmp");
   const unique = `${inputs.tagName.replace(/[^A-Za-z0-9._-]/g, "_")}-${Date.now()}`;
