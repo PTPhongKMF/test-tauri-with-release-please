@@ -14,7 +14,9 @@
       "component": "aethereye",
 
       "release-type": "simple",
+      "skip-github-release": true,
 
+      "version-file": "test-version.txt",
       "extra-files": [
         {
           "type": "json",
@@ -35,7 +37,7 @@
 
       "component-no-space": true,
 
-      "pull-request-title-pattern": "release(project.${branch}): 🤖 ${component} v${version}",
+      "pull-request-title-pattern": "release(project.app): 🤖 ${component} v${version}",
 
       "changelog-path": "CHANGELOG.md"
     }

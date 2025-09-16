@@ -329,7 +329,7 @@ async function runScript() {
   console.log("Preparing to run installer...");
   await runInstaller(inputs, installDir);
 
-  console.log("🔧 Cleaning up installer miscellaneous files after installation (e.g. uninstall.exe)...");
+  console.log("🧹 Cleaning up installer miscellaneous files after installation (e.g. uninstall.exe)...");
   await cleanupInstallerArtifacts(installDir);
 
   console.log("Preparing to bundle installed assets into a portable zip...");
