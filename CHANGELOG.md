@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.39.0-rc-beta-alpha-awooo.1](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.38.0-rc-beta-alpha-awooo.1...v0.39.0-rc-beta-alpha-awooo.1) (2025-09-19)
+
+
+### Features
+
+* new md ([29e6357](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/29e63577712228aa6cfd505e957a1d4136adc18e))
+
 ## [0.38.0-rc-beta-alpha-awooo.1](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.38.0-rc-beta-alpha-awooo...v0.38.0-rc-beta-alpha-awooo.1) (2025-09-19)
 
 
