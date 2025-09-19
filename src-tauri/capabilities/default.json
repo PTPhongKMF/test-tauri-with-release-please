@@ -7,7 +7,6 @@
   ],
   "permissions": [
     "core:default",
-    "opener:default",
     "fs:default",
     "fs:allow-read",
     "fs:allow-read-text-file",

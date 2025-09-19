@@ -14,6 +14,8 @@
       "component": "aethereye",
 
       "release-type": "simple",
+      "prerelease": true,
+      "prerelease-type": "rc-testing",
 
       "extra-files": [
         {
