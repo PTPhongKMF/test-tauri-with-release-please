@@ -116,8 +116,8 @@ async function fetchOrThrow(...args: Parameters<typeof fetch>): Promise<Response
 async function runScript() {
   console.log("Collecting required inputs...");
   const inputs = getRequiredInputs();
-  const insertMarkdownStr = await Deno.readTextFile(".github/scripts/insert-markdown-to-release-please-release-note/insert-markdown.md");
-  if (!insertMarkdownStr) throw new Error("📄 '.github/scr/insert-markdown-to-release-please-release-note/insert-markdown.md' is empty.");
+  const insertMarkdownStr = await Deno.readTextFile(".github/scripts/insert-markdown-to-release-please-release-note/insert-markdown-20-09-25.md");
+  if (!insertMarkdownStr) throw new Error("📄 '.github/scr/insert-markdown-to-release-please-release-note/insert-markdown-20-09-25.md' is empty.");
 
   const [owner, repo] = inputs.githubRepo.split("/");
   const releaseTagUrl = `https://github.com/${owner}/${repo}/releases/tag/${inputs.tagName}`;
@@ -135,6 +135,7 @@ async function runScript() {
   const release = await getReleaseResponse.json() as Release;
 
   const MARKER_START = "<!-- additional-markdown:start -->";
+  const MARKER_TIMESTAMP = `<!-- time:${new Date().toISOString()} -->`;
   const MARKER_END = "<!-- additional-markdown:end -->";
 
   if (release.body?.includes(MARKER_START)) {
@@ -143,7 +144,7 @@ async function runScript() {
   }
 
   const patchApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/${release.id}`;
-  const newReleaseBody = `${MARKER_START}\n${insertMarkdownStr.trim()}\n${MARKER_END}\n\n\n${release.body || ""}`;
+  const newReleaseBody = `${MARKER_START}\n${MARKER_TIMESTAMP}\n${insertMarkdownStr.trim()}\n${MARKER_END}\n\n\n${release.body || ""}`;
 
   console.log(`Sending PATCH request (via GitHub REST API) to ${patchApiUrl}`);
   await fetch(patchApiUrl, {

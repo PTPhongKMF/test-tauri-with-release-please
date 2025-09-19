@@ -31,11 +31,11 @@ interface RequiredInputs {
 const HEADER_LIST = [
   "🕊 Keep releasing forward. Even if it breaks. Even after sunset.",
   "🌺 Master, the release is ready to be served",
-  "🥀 SYBAU, the release is here",
+  "🥀 A new release is here... so are the bugs.",
   "👒 Darling, I have a new release for you",
   "💤 I... have created... a release...",
   "🔥 Glory to the App, release it!",
-  "🕵️‍♂️ I know this release is good but I can't prove it"
+  "🕵️‍♂️ I know this release is good but I can't prove it."
 ];
 
 function getRequiredInputs(): RequiredInputs {

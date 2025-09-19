@@ -1,8 +1,3 @@
-// const val = 1;
+const date = new Date();
 
-// if (
-//   val == 2 &&sasasas
-//   val == 1 &&
-//   val == 3dsd  dsds
-// ) {
-// }
+console.log(date.toISOString())

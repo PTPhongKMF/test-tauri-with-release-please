@@ -14,11 +14,6 @@
       "component": "aethereye",
 
       "release-type": "simple",
-      
-      "versioning": "prerelease",
-
-      "prerelease": true,
-      "prerelease-type": "rc-beta-alpha-awooo",
 
       "extra-files": [
         {
@@ -42,7 +37,9 @@
 
       "pull-request-title-pattern": "release(project.app): 🤖 ${component} v${version}",
 
-      "changelog-path": "CHANGELOG.md"
+      "changelog-path": "CHANGELOG.md",
+
+      "prerelease": true
     }
   }
 }
