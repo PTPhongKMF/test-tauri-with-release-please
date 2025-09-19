@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.36.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.35.0...v0.36.0) (2025-09-19)
+
+
+### Features
+
+* weird, no suffix ([6249046](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/6249046deaa4353330dd2274bd9d89698c34492b))
+
 ## [0.35.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.34.0...v0.35.0) (2025-09-19)
 
 
