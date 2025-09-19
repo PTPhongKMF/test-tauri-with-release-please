@@ -18,6 +18,11 @@
       "extra-files": [
         {
           "type": "json",
+          "path": "deno.json",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "json",
           "path": "src-tauri/tauri.conf.json",
           "jsonpath": "$.version"
         },
