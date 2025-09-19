@@ -15,7 +15,7 @@
 
       "release-type": "simple",
       "prerelease": true,
-      "prerelease-type": "rc-testing",
+      "prerelease-type": "beta",
 
       "extra-files": [
         {
