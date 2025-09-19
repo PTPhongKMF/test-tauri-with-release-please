@@ -6,7 +6,7 @@
   "bump-minor-pre-major": true,
   "bump-patch-for-minor-pre-major": false,
 
-  "include-component-in-tag": true,
+  "include-component-in-tag": false,
   "include-v-in-tag": true,
 
   "packages": {
@@ -14,8 +14,11 @@
       "component": "aethereye",
 
       "release-type": "simple",
+      
+      "versioning": "prerelease",
+
       "prerelease": true,
-      "prerelease-type": "beta",
+      "prerelease-type": "rc-beta-alpha-awooo",
 
       "extra-files": [
         {
