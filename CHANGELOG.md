@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.35.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.34.0...v0.35.0) (2025-09-19)
+
+
+### Features
+
+* forogt to trigger ([e7a87f8](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/e7a87f8e3f112d53eabd14875d03c820414dd66f))
+
 ## [0.34.0](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.33.0...v0.34.0) (2025-09-16)
 
 
