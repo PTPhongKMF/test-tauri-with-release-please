@@ -44,7 +44,7 @@
 
       "changelog-path": "CHANGELOG.md",
 
-      "prerelease": true
+      "prerelease": false
     }
   }
 }
