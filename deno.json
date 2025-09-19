@@ -1,6 +1,6 @@
 {
   "name": "tauri-test-rp",
-  "version": "0.1.0",
+  "version": "0.39.1-rc-beta-alpha-awooo.1",
   "description": "",
   "license": "MIT",
   "tasks": {
@@ -11,7 +11,11 @@
     "tauri": "deno run -A npm:@tauri-apps/cli"
   },
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "deno.ns"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "deno.ns"
+    ],
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "strict": true
@@ -24,7 +28,6 @@
     "vite-plugin-solid": "npm:vite-plugin-solid@^2.11.0",
     "@tauri-apps/cli": "npm:@tauri-apps/cli@^2"
   },
-
   "fmt": {
     "lineWidth": 150
   }
