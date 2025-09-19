@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.0-rc-beta-alpha-awooo.1](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.38.0-rc-beta-alpha-awooo...v0.38.0-rc-beta-alpha-awooo.1) (2025-09-19)
+
+
+### Features
+
+* will it increment now? ([ea629b0](https://github.com/PTPhongKMF/test-tauri-with-release-please/commit/ea629b068e1ee17a1aeecc3cc1f66e66ea00c1fe))
+
 ## [0.38.0-rc-beta-alpha-awooo](https://github.com/PTPhongKMF/test-tauri-with-release-please/compare/v0.37.0...v0.38.0-rc-beta-alpha-awooo) (2025-09-19)
 
 
