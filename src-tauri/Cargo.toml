@@ -1,6 +1,6 @@
 [package]
 name = "tauri-test-rp"
-version = "0.39.0-rc-beta-alpha-awooo.1"
+version = "0.39.1-rc-beta-alpha-awooo.1"
 description = "A Tauri App"
 authors = ["you"]
 edition = "2021"
